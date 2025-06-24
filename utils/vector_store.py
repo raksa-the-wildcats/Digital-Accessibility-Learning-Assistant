@@ -26,11 +26,16 @@ class VectorStore:
         try:
             os.makedirs(Config.CHROMA_DB_PATH, exist_ok=True)
             self.client = chromadb.PersistentClient(path=Config.CHROMA_DB_PATH)
+            print(f"Successfully created PersistentClient at {Config.CHROMA_DB_PATH}")
         except Exception as e:
             print(f"Failed to create PersistentClient: {e}")
-            # Use in-memory client as fallback
-            self.client = chromadb.Client()
-            print("Using in-memory ChromaDB client")
+            try:
+                # Try in-memory client as fallback
+                self.client = chromadb.Client()
+                print("Using in-memory ChromaDB client")
+            except Exception as e2:
+                print(f"Failed to create in-memory client: {e2}")
+                raise RuntimeError(f"Cannot initialize ChromaDB: {e2}")
         
         self.collection_name = Config.COLLECTION_NAME
         self.embeddings = SentenceTransformer(Config.EMBEDDING_MODEL)

@@ -202,8 +202,12 @@ Answer as a supportive instructor preparing future educators to be accessibility
             chunks = processor.process_all_pdfs()
             
             if not chunks:
-                print("No chunks created from PDFs")
-                return False
+                print("No chunks created from PDFs - creating default accessibility content")
+                # Create some default accessibility content for demo purposes
+                chunks = self._create_default_content()
+                if not chunks:
+                    print("Failed to create default content")
+                    return False
             
             # Reset collection if force rebuild
             if force_rebuild:
@@ -218,3 +222,34 @@ Answer as a supportive instructor preparing future educators to be accessibility
         except Exception as e:
             print(f"Error initializing knowledge base: {str(e)}")
             return False
+    
+    def _create_default_content(self):
+        """Create default accessibility content when PDFs are not available."""
+        default_content = [
+            {
+                "content": "Digital accessibility ensures that educational content and technology can be used by students with disabilities. This includes visual, auditory, motor, and cognitive disabilities. The goal is to create inclusive learning environments where all students can participate fully.",
+                "source": "Default Content",
+                "chunk_id": "default_001"
+            },
+            {
+                "content": "WCAG (Web Content Accessibility Guidelines) provides standards for making web content accessible. The guidelines are organized around four principles: Perceivable, Operable, Understandable, and Robust (POUR). These principles help ensure content works with assistive technologies.",
+                "source": "Default Content", 
+                "chunk_id": "default_002"
+            },
+            {
+                "content": "Universal Design for Learning (UDL) is an educational framework that guides the design of learning experiences to meet the needs of all learners. It emphasizes providing multiple means of representation, engagement, and action/expression.",
+                "source": "Default Content",
+                "chunk_id": "default_003"
+            },
+            {
+                "content": "When creating accessible documents, use proper heading structure, provide alternative text for images, ensure good color contrast, and use descriptive link text. These practices help students using screen readers and other assistive technologies.",
+                "source": "Default Content",
+                "chunk_id": "default_004"
+            },
+            {
+                "content": "Section 508 and the Americans with Disabilities Act (ADA) require educational institutions to provide accessible technology and content. This includes websites, learning management systems, and digital course materials.",
+                "source": "Default Content",
+                "chunk_id": "default_005"
+            }
+        ]
+        return default_content

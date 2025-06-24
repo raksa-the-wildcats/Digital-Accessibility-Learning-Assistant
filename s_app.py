@@ -1,8 +1,14 @@
 # Fix for ChromaDB SQLite compatibility on Streamlit Cloud
 import sys
+import os
+
+# Set environment variable for ChromaDB compatibility
+os.environ['ALLOW_RESET'] = 'TRUE'
+
+# SQLite3 compatibility fix for Streamlit Cloud
 try:
-    __import__('pysqlite3')
-    sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+    import pysqlite3
+    sys.modules['sqlite3'] = pysqlite3
 except ImportError:
     pass
 

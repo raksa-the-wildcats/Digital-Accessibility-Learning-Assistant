@@ -1,6 +1,6 @@
-# Web Accessibility Q&A Chatbot
+# Digital Accessibility Learning Assistant
 
-A chatbot that answers web accessibility questions using your PDF knowledge base, built with OpenAI, LangChain, ChromaDB, and Streamlit.
+An AI-powered learning assistant designed for education students to learn about digital accessibility and inclusive design. Built with OpenAI GPT-4o, ChromaDB, and Streamlit.
 
 ## Features
 
