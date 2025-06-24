@@ -2,8 +2,9 @@
 import sys
 import os
 
-# Set environment variable for ChromaDB compatibility
+# Set environment variables for ChromaDB compatibility
 os.environ['ALLOW_RESET'] = 'TRUE'
+os.environ['PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION'] = 'python'
 
 # SQLite3 compatibility fix for Streamlit Cloud
 try:
