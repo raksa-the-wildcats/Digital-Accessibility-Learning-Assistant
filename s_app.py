@@ -23,6 +23,18 @@ st.set_page_config(
     layout="wide"
 )
 
+# Custom CSS to make sidebar narrower
+st.markdown("""
+<style>
+    [data-testid="stSidebar"] {
+        width: 250px !important;
+    }
+    [data-testid="stSidebar"] > div:first-child {
+        width: 250px !important;
+    }
+</style>
+""", unsafe_allow_html=True)
+
 from config import Config
 from utils.qa_chain import QAChain
 
@@ -99,13 +111,13 @@ def get_casual_response(message):
 def get_example_questions():
     """Get example questions for the interface."""
     return [
-        "What is digital accessibility and why should educators care about it?",
-        "How can I make my classroom materials accessible to students with visual impairments?",
-        "What are some simple ways to create accessible documents and presentations?",
-        "How do I ensure online content works for students using assistive technology?",
-        "What accessibility features should I look for when choosing educational technology?",
-        "How can I advocate for accessibility accommodations in my school?",
-        "What are universal design principles for education?"
+        "What are the basic accessibility principles for headings?",
+        "How do I make images accessible to users with disabilities?",
+        "What are the best practices for creating accessible links?",
+        "How can I make video and audio content accessible?",
+        "What are the color contrast requirements for accessibility?",
+        "How do I create accessible lists and navigation?",
+        "What are the accessibility guidelines for tables?"
     ]
 
 def main():
@@ -158,28 +170,34 @@ def main():
         # Example questions
         st.header("💡 Quick Start")
         example_questions = get_example_questions()
-        for i, question in enumerate(example_questions):
-            # Create shorter, cleaner button text
-            if "digital accessibility and why" in question:
-                button_text = "🌐 Why Accessibility Matters"
-            elif "classroom materials accessible" in question:
-                button_text = "📚 Accessible Materials"
-            elif "accessible documents" in question:
-                button_text = "📄 Document Accessibility"
-            elif "online content works" in question:
-                button_text = "💻 Accessible Online Content"
-            elif "educational technology" in question:
-                button_text = "🔧 Choosing Accessible Tech"
-            elif "advocate for accessibility" in question:
-                button_text = "🗣️ Advocacy in Schools"
-            elif "universal design principles" in question:
-                button_text = "🎯 Universal Design"
-            else:
-                button_text = question[:25] + "..."
-            
-            if st.button(button_text, key=f"example_{i}"):
-                st.session_state.example_question = question
-                st.rerun()
+        
+        # Create a container for consistent button sizing
+        button_container = st.container()
+        
+        with button_container:
+            for i, question in enumerate(example_questions):
+                # Create shorter, cleaner button text
+                if "headings" in question:
+                    button_text = "📝 Headings"
+                elif "images accessible" in question:
+                    button_text = "🖼️ Images"
+                elif "accessible links" in question:
+                    button_text = "🔗 Links"
+                elif "video and audio" in question:
+                    button_text = "🎥 Video/Audio"
+                elif "color contrast" in question:
+                    button_text = "🎨 Color Contrast"
+                elif "lists and navigation" in question:
+                    button_text = "📋 Lists"
+                elif "tables" in question:
+                    button_text = "📊 Tables"
+                else:
+                    button_text = question[:25] + "..."
+                
+                # Use full width for consistent button sizing
+                if st.button(button_text, key=f"example_{i}", use_container_width=True):
+                    st.session_state.example_question = question
+                    st.rerun()
     
     # Main chat interface
     # Chat messages container
