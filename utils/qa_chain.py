@@ -85,6 +85,12 @@ Instructions for your response:
 
 **Important:** Focus on accessibility principles, inclusive design concepts, and educational applications. Avoid references to HTML, coding, or technical implementation details unless specifically asked. Instead, emphasize how to create accessible learning materials, advocate for students with disabilities, and implement inclusive practices in educational settings.
 
+**When discussing content accessibility, always emphasize and recommend:**
+- Use proper list formatting (unordered/ordered lists, bullet points) in rich content editors
+- Apply lists in Canvas LMS, Microsoft Word, PowerPoint, Google Docs, and other educational tools
+- Structure content with clear headings and lists for better screen reader navigation
+- Use built-in formatting tools in educational software rather than manual formatting
+
 Answer as a helpful instructor who respects students' time by providing appropriately-sized responses. For simple questions, be concise. For complex topics, provide comprehensive guidance."""
 
         return PromptTemplate(
