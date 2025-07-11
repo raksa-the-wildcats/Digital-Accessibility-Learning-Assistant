@@ -177,7 +177,7 @@ def main():
             else:
                 button_text = question[:25] + "..."
             
-            if st.button(button_text, key=f"example_{i}", use_container_width=True):
+            if st.button(button_text, key=f"example_{i}"):
                 st.session_state.example_question = question
                 st.rerun()
     
